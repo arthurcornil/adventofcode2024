@@ -41,9 +41,19 @@ const { leftList, rightList } = getLists(rawData);
 leftList.sort();
 rightList.sort();
 
+//part one
+
 const totalDistance: number = leftList
     .map((leftNum, index) => Math.abs(leftNum - rightList[index]))
     .reduce((total, distance) => total + distance, 0);
 
 console.log(`Here is your answer: ${totalDistance}`);
+
+//part two
+
+const totalSimilarityScore: number = leftList
+    .map(leftNum => leftNum * rightList.filter(rightNum => rightNum === leftNum).length)
+    .reduce((total, similarityScore) => total + similarityScore, 0);
+
+console.log(`Here is your second answer: ${totalSimilarityScore}`);
 
