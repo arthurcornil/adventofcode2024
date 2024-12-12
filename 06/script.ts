@@ -135,7 +135,6 @@ const obstacleCoordinates: Coordinates[] = getObstacleCoordinates(lines);
 const visitedSpots = new Set<string>();
 
 while (guard.isInMap()) {
-    console.log(guard.getCoordinates());
     const nextPosition = guard.getNextPosition();
 
     if (obstacleCoordinates.some(coord => nextPosition.x === coord.x && nextPosition.y === coord.y)) {
@@ -146,4 +145,4 @@ while (guard.isInMap()) {
     addToVisitedSpots(guard.getCoordinates());
 }
 
-console.log(visitedSpots.size);
+console.log(`Here is your answer: ${visitedSpots.size}`);
