@@ -19,6 +19,9 @@ function isResultReachable(currentTotal: number, calculation: Calculation, index
     if (calculation.operands.length - 1 === index) {
         return currentTotal === calculation.result;
     }
+    if (currentTotal > calculation.result) {
+        return false;
+    }
     index ++;
 
     return (isResultReachable(currentTotal + calculation.operands[index], calculation, index)
@@ -33,4 +36,4 @@ const calculations: Calculation[] = getCalculations(rawOperations);
 
 const validCalculations = calculations.filter(calculation => isResultReachable(calculation.operands[0], calculation, 0));
 const totalResultValidCalculations = validCalculations.reduce((accumulator, calculation) => accumulator + calculation.result, 0);
-console.log(`Here is your answer ${totalResultValidCalculations}`);
+console.log(`Here is your answer: ${totalResultValidCalculations}`);
