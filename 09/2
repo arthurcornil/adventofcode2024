@@ -1,0 +1,22 @@
+import fs from 'fs/promises';
+
+type MemoryRepresentation = (number|null)[];
+
+function buildMemory(rawData: string): MemoryRepresentation {
+    let memory: MemoryRepresentation = [];
+    let currentId = 0;
+    let isFile = true;
+
+    for (const digit in rawData) {
+        let memoryBit: number|null = currentId;
+        if (!isFile) {
+            memoryBit = null;
+        }
+        for (let i = 0; i < Number(digit); i ++) {
+            memory.push(memoryBit);
+        }
+    }
+}
+
+const fileName = "test-input";
+const rawData: string = (await fs.readFile(fileName, 'utf-8')).split('\n')[0];
